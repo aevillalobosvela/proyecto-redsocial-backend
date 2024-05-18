@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const cusuario = require('../controlers/usuario')
 
-router.get('/lista',(req,res)=>{
-    res.status(205).send('Lista de usuarios');
-});
+router.get('/lista', cusuario.listado);
 
-router.put('/insertar',(req,res)=>{
-    res.status(203).send('Insertar usuario');
-});
+router.put('/insertar', cusuario.insertar);
 
 router.delete('/delete',(req,res)=>{
     res.status(200).send('Usuario eliminado');

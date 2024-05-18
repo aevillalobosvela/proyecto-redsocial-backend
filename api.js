@@ -1,15 +1,19 @@
 const express = require("express");
-const dotenv = require("dotenv").config()
-const db = require('./database')
+const dotenv = require("dotenv").config();
+const db = require("./database");
+const bodyParser = require("body-parser");
 
 const app = express();
 
-app.get('/',(req,res)=>{
-    res.status(200).send('Bienvenido a la API get');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.status(200).send("Bienvenido a la API get");
 });
 
-app.use('/usuarios',require("./routes/routes.js"));
+app.use("/usuario", require("./routes/usuario.js"));
 
-app.listen(process.env.PORT, ()=>{
-    console.log("conectado en el puerto: ",process.env.PORT)
+app.listen(process.env.PORT, () => {
+  console.log("conectado en el puerto: ", process.env.PORT);
 });
