@@ -6,13 +6,9 @@ router.get('/lista', cusuario.listado);
 
 router.put('/insertar', cusuario.insertar);
 
-router.delete('/delete',(req,res)=>{
-    res.status(200).send('Usuario eliminado');
-});
+router.delete('/borrar', cusuario.borrar);
 
-router.post('/actualizar',(req,res)=>{
-    res.status(205).send('Usuario actualizado');
-});
+router.post('/actualizar', cusuario.actualizar);
 
 module.exports = router 
 

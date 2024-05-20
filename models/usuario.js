@@ -22,4 +22,30 @@ module.exports = {
       }
     );
   },
+
+  borrar: (datos, callBack) => {
+    coneccion.query(
+      `delete from usuario where id=?`,
+      [datos.id],
+      (error, results) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
+  actualizar: (datos, callBack) => {
+    coneccion.query(
+      `update usuario set nombre = ? where id=?`,
+      [datos.nombre, datos.id],
+      (error, results) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
 };
