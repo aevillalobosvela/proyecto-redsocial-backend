@@ -23,7 +23,7 @@ module.exports = {
 
   insertar: (req, res) => {
     const body = req.body;
-    body.password = sha256(body.password)
+    body.password = sha256(body.password);
     musuario.insertar(body, (err, results) => {
       if (err) {
         console.log(err);
@@ -70,7 +70,7 @@ module.exports = {
 
   actualizar: (req, res) => {
     const body = req.body;
-    body.password = sha256(body.password)
+    body.password = sha256(body.password);
     musuario.actualizar(body, (err, results) => {
       if (err) {
         console.log(err);
@@ -87,6 +87,39 @@ module.exports = {
           success: 1,
           data: results,
           nombre: body,
+        });
+      }
+    });
+  },
+
+  verificar: (req, res) => {
+    const body = req.body;
+    body.password = sha256(body.password);
+    musuario.verificar(body, (err, results) => {
+      if (err) {
+        console.log("error1");
+        return res.status(500).json({
+          error: err,
+          realizado: 0,
+          mensaje: "Datos no validos",
+        });
+      } else {
+        jwt.sign(JSON.stringify(results), process.env.SECRET, (err, token) => {
+          if (err) {
+            console.log("error2");
+            return res.status(500).json({
+              error: err,
+              realizado: 0,
+              mensaje: "Credenciales incorrectas",
+            });
+          } else {
+            console.log("realizado");
+            return res.status(200).json({
+              realizado: 1,
+              data: results,
+              token: token,
+            });
+          }
         });
       }
     });
