@@ -1,4 +1,10 @@
 const musuario = require("../models/usuario");
+const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+
+function sha256(string) {
+  return crypto.createHash("sha256").update(string).digest("hex");
+}
 
 module.exports = {
   listado: (req, res) => {
@@ -17,6 +23,7 @@ module.exports = {
 
   insertar: (req, res) => {
     const body = req.body;
+    body.password = sha256(body.password)
     musuario.insertar(body, (err, results) => {
       if (err) {
         console.log(err);
@@ -63,6 +70,7 @@ module.exports = {
 
   actualizar: (req, res) => {
     const body = req.body;
+    body.password = sha256(body.password)
     musuario.actualizar(body, (err, results) => {
       if (err) {
         console.log(err);

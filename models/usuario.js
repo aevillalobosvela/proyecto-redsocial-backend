@@ -1,4 +1,5 @@
 const coneccion = require("../database");
+const crypto = require('crypto');
 
 module.exports = {
   listado: (callBack) => {
@@ -12,8 +13,8 @@ module.exports = {
 
   insertar: (datos, callBack) => {
     coneccion.query(
-      `insert into usuario (nombre) values (?)`,
-      [datos.nombre],
+      `insert into usuario (nombre,password) values (?,?)`,
+      [datos.nombre, datos.password],
       (error, results, fields) => {
         if (error) {
           callBack(error);
@@ -38,8 +39,8 @@ module.exports = {
 
   actualizar: (datos, callBack) => {
     coneccion.query(
-      `update usuario set nombre = ? where id=?`,
-      [datos.nombre, datos.id],
+      `update usuario set nombre = ?,password = ? where id=?`,
+      [datos.nombre, datos.password, datos.id],
       (error, results) => {
         if (error) {
           callBack(error);
