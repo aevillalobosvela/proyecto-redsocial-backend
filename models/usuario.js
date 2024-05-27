@@ -17,8 +17,8 @@ module.exports = {
 
   insertar: (datos, callBack) => {
     coneccion.query(
-      `insert into usuario (nombre,password) values (?,?)`,
-      [datos.nombre, datos.password],
+      `insert into usuario (nombre,apellido,username,fecnac,password,imagen) values (?,?,?,?,?,?)`,
+      [datos.nombre, datos.apellido, datos.username, datos.fecnac, datos.password,datos.imagen],
       (error, results, fields) => {
         if (error) {
           callBack(error);
@@ -43,8 +43,8 @@ module.exports = {
 
   actualizar: (datos, callBack) => {
     coneccion.query(
-      `update usuario set nombre = ?,password = ? where id=?`,
-      [datos.nombre, datos.password, datos.id],
+      `update usuario set nombre=?,apellido=?,username=?,fecnac=?,password=? where id=?`,
+      [datos.nombre, datos.apellido, datos.username, datos.fecnac, datos.password, datos.id],
       (error, results) => {
         if (error) {
           callBack(error);
@@ -55,16 +55,14 @@ module.exports = {
   },
 
   verificar: (datos, callBack) => {
-   
-
     coneccion.query(
-      `SELECT id, nombre FROM usuario WHERE nombre = ? AND password = ?`,
-      [datos.nombre, datos.password],
+      `SELECT id, nombre, apellido FROM usuario WHERE username = ? AND password = ?`,
+      [datos.username, datos.password],
       (error, results) => {
         if (error) {
           return callBack(error);
         }
-        if (!datos.nombre || !datos.password) {
+        if (!datos.username || !datos.password) {
           return callBack(error);
         }
         if (results.length === 0) {
