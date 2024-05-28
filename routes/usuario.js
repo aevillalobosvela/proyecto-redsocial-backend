@@ -3,7 +3,7 @@ const router = express.Router();
 const cusuario = require('../controlers/usuario')
 const auth = require('../auth');
 
-router.get('/lista', auth.verificatoken, cusuario.listado);
+router.get('/lista', cusuario.listado);
 
 router.put('/insertar', auth.verificatoken, cusuario.insertar);
 

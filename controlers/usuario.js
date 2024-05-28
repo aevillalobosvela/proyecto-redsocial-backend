@@ -15,8 +15,7 @@ module.exports = {
       }
       console.log(results);
       return res.json({
-        success: 1,
-        data: results,
+        datos: results,
       });
     });
   },
@@ -115,7 +114,7 @@ module.exports = {
           } else {
             console.log("realizado");
             return res.status(200).json({
-              data: results[0],
+              datos: results[0],
               token: token,
             });
           }
