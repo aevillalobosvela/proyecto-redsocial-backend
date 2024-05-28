@@ -56,7 +56,7 @@ module.exports = {
 
   verificar: (datos, callBack) => {
     coneccion.query(
-      `SELECT id, nombre, apellido FROM usuario WHERE username = ? AND password = ?`,
+      `SELECT * FROM usuario WHERE username = ? AND password = ?`,
       [datos.username, datos.password],
       (error, results) => {
         if (error) {

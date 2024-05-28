@@ -1,8 +1,17 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
+const cors = require("cors");
 const db = require("./database");
 
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Alternatively, you can specify allowed origins
+// app.use(cors({
+//   origin: 'http://localhost:8080' // Allow only this origin
+// }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

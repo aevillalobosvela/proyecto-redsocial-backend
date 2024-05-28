@@ -115,8 +115,7 @@ module.exports = {
           } else {
             console.log("realizado");
             return res.status(200).json({
-              realizado: 1,
-              data: results,
+              data: results[0],
               token: token,
             });
           }
