@@ -36,7 +36,6 @@ module.exports = {
       console.log(results);
       if (!res.headersSent) {
         return res.json({
-          success: 1,
           data: results,
           nombre: body,
         });
