@@ -25,19 +25,18 @@ module.exports = {
     body.password = sha256(body.password);
     musuario.insertar(body, (err, results) => {
       if (err) {
-        console.log(err);
         if (!res.headersSent) {
           return res.json({
             success: 0,
-            error: err,
+            error: "Usuario ya registrado",
           });
         }
       }
       console.log(results);
       if (!res.headersSent) {
         return res.json({
+          success: 1,
           data: results,
-          nombre: body,
         });
       }
     });
