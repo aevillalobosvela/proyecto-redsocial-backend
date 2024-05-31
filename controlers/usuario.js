@@ -10,10 +10,8 @@ module.exports = {
   listado: (req, res) => {
     musuario.listado((err, results) => {
       if (err) {
-        console.log(err);
         return;
       }
-      console.log(results);
       return res.json({
         datos: results,
       });
@@ -32,7 +30,6 @@ module.exports = {
           });
         }
       }
-      console.log(results);
       if (!res.headersSent) {
         return res.json({
           success: 1,
@@ -46,7 +43,6 @@ module.exports = {
     const body = req.body;
     musuario.borrar(body, (err, results) => {
       if (err) {
-        console.log(err);
         if (!res.headersSent) {
           return res.json({
             success: 0,
@@ -54,7 +50,6 @@ module.exports = {
           });
         }
       }
-      console.log(results);
       if (!res.headersSent) {
         return res.json({
           success: 1,
@@ -70,7 +65,6 @@ module.exports = {
     body.password = sha256(body.password);
     musuario.actualizar(body, (err, results) => {
       if (err) {
-        console.log(err);
         if (!res.headersSent) {
           return res.json({
             success: 0,
@@ -78,7 +72,6 @@ module.exports = {
           });
         }
       }
-      console.log(results);
       if (!res.headersSent) {
         return res.json({
           success: 1,
@@ -94,7 +87,6 @@ module.exports = {
     body.password = sha256(body.password);
     musuario.verificar(body, (err, results) => {
       if (err) {
-        console.log("error1");
         return res.status(500).json({
           error: err,
           realizado: 0,
@@ -103,14 +95,12 @@ module.exports = {
       } else {
         jwt.sign(JSON.stringify(results), process.env.SECRET, (err, token) => {
           if (err) {
-            console.log("error2");
             return res.status(500).json({
               error: err,
               realizado: 0,
               mensaje: "Credenciales incorrectas",
             });
           } else {
-            console.log("realizado");
             return res.status(200).json({
               datos: results[0],
               token: token,

@@ -28,6 +28,8 @@ router.put("/pinsertar", cpublicacion.insertar);
 
 router.get("/clista", ccomentario.listado);
 
+router.get("/cpublista", ccomentario.listado_com);
+
 router.put("/cinsertar", ccomentario.insertar);
 
 module.exports = router;

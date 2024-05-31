@@ -14,6 +14,19 @@ module.exports = {
     });
   },
 
+  listado_com: (req, res) => {
+    const { cod_pub } = req.query;
+    mcomentario.listado_com({ cod_pub }, (err, results) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      return res.json({
+        datos: results,
+      });
+    });
+  },
+
   insertar: (req, res) => {
     const body = req.body;
     mcomentario.insertar(body, (err, results) => {

@@ -14,6 +14,20 @@ module.exports = {
     );
   },
 
+  listado_com: (datos, callBack) => {
+    coneccion.query(
+      `SELECT * FROM comentario WHERE cod_pub = ?`,
+      [datos.cod_pub],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
+
   insertar: (datos, callBack) => {
     coneccion.query(
       `insert into comentario (contenido_com,fec_com,cod_pub,id) values (?,?,?,?)`,
