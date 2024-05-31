@@ -24,6 +24,8 @@ router.get("/plista", cpublicacion.listado);
 
 router.put("/pinsertar", cpublicacion.insertar);
 
+router.get("/precuperar_user", cpublicacion.user_pub);
+
 //Rutas de comentario
 
 router.get("/clista", ccomentario.listado);

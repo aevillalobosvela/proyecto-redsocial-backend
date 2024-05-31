@@ -14,6 +14,19 @@ module.exports = {
     );
   },
 
+  user_pub: (callBack) => {
+    coneccion.query(
+      `SELECT * FROM usuario u,publicacion p WHERE u.id = p.id ORDER BY fec_pub DESC;`,
+      [],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   insertar: (datos, callBack) => {
     coneccion.query(
       `insert into publicacion (contenido,likes,fec_pub,id) values (?,?,?,?)`,

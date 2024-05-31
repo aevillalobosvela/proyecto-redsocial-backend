@@ -12,6 +12,17 @@ module.exports = {
     });
   },
 
+  user_pub: (req, res) => {
+    mpublicacion.user_pub((err, results) => {
+      if (err) {
+        return;
+      }
+      return res.json({
+        datos: results,
+      });
+    });
+  },
+
   insertar: (req, res) => {
     const body = req.body;
     mpublicacion.insertar(body, (err, results) => {
