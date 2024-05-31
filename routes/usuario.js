@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const cusuario = require("../controlers/usuario");
 const cpublicacion = require("../controlers/publicacion");
+const ccomentario = require("../controlers/comentario");
 const auth = require("../auth");
 const multer = require("multer");
 
@@ -22,5 +23,11 @@ router.post("/login", cusuario.verificar);
 router.get("/plista", cpublicacion.listado);
 
 router.put("/pinsertar", cpublicacion.insertar);
+
+//Rutas de comentario
+
+router.get("/clista", ccomentario.listado);
+
+router.put("/cinsertar", ccomentario.insertar);
 
 module.exports = router;
