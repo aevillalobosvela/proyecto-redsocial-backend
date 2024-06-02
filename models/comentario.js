@@ -16,7 +16,7 @@ module.exports = {
 
   listado_com: (datos, callBack) => {
     coneccion.query(
-      `SELECT * FROM comentario WHERE cod_pub = ?`,
+      `SELECT * FROM comentario c,usuario u WHERE c.cod_pub = ? AND c.id = u.id ORDER BY fec_com DESC;`,
       [datos.cod_pub],
       (error, results, fields) => {
         if (error) {

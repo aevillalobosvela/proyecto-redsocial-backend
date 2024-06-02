@@ -26,6 +26,8 @@ router.put("/pinsertar", cpublicacion.insertar);
 
 router.get("/precuperar_user", cpublicacion.user_pub);
 
+router.get("/pmis_pub", cpublicacion.mis_pub);
+
 //Rutas de comentario
 
 router.get("/clista", ccomentario.listado);

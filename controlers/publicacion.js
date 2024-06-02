@@ -23,6 +23,18 @@ module.exports = {
     });
   },
 
+  mis_pub: (req, res) => {
+    const { id } = req.query;
+    mpublicacion.mis_pub({ id },(err, results) => {
+      if (err) {
+        return;
+      }
+      return res.json({
+        datos: results,
+      });
+    });
+  },
+
   insertar: (req, res) => {
     const body = req.body;
     mpublicacion.insertar(body, (err, results) => {
