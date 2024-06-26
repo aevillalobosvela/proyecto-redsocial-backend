@@ -52,4 +52,17 @@ module.exports = {
       }
     );
   },
+
+  eliminar: (datos, callBack) => {
+    coneccion.query(
+      `delete from publicacion where cod_pub=?`,
+      [datos.cod_pub],
+      (error, results) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
 };

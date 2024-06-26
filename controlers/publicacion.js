@@ -25,7 +25,7 @@ module.exports = {
 
   mis_pub: (req, res) => {
     const { id } = req.query;
-    mpublicacion.mis_pub({ id },(err, results) => {
+    mpublicacion.mis_pub({ id }, (err, results) => {
       if (err) {
         return;
       }
@@ -43,6 +43,26 @@ module.exports = {
           return res.json({
             success: 0,
             error: "Error en la publicacion",
+          });
+        }
+      }
+      if (!res.headersSent) {
+        return res.json({
+          success: 1,
+          data: results,
+        });
+      }
+    });
+  },
+
+  eliminar: (req, res) => {
+    const { cod_pub } = req.query;
+    mpublicacion.eliminar({ cod_pub}, (err, results) => {
+      if (err) {
+        if (!res.headersSent) {
+          return res.json({
+            success: 0,
+            error: err,
           });
         }
       }
