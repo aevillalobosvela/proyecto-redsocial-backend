@@ -62,7 +62,7 @@ module.exports = {
 
   actualizar: (req, res) => {
     const body = req.body;
-    body.password = sha256(body.password);
+    console.log(body);
     musuario.actualizar(body, (err, results) => {
       if (err) {
         if (!res.headersSent) {

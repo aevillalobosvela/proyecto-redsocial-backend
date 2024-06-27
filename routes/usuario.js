@@ -14,7 +14,7 @@ router.put("/insertar", cusuario.insertar);
 
 router.delete("/borrar", auth.verificatoken, cusuario.borrar);
 
-router.post("/actualizar", auth.verificatoken, cusuario.actualizar);
+router.post("/actualizar", cusuario.actualizar);
 
 router.post("/login", cusuario.verificar);
 
