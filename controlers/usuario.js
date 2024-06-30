@@ -82,6 +82,29 @@ module.exports = {
     });
   },
 
+  actualizarpass: (req, res) => {
+    const body = req.body;
+    console.log(body);
+    body.password = sha256(body.password);
+    musuario.actualizarpass(body, (err, results) => {
+      if (err) {
+        if (!res.headersSent) {
+          return res.json({
+            success: 0,
+            error: err,
+          });
+        }
+      }
+      if (!res.headersSent) {
+        return res.json({
+          success: 1,
+          data: results,
+        });
+      }
+    });
+  },
+
+
   verificar: (req, res) => {
     const body = req.body;
     body.password = sha256(body.password);

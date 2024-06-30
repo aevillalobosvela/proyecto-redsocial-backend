@@ -16,6 +16,8 @@ router.delete("/borrar", auth.verificatoken, cusuario.borrar);
 
 router.post("/actualizar", cusuario.actualizar);
 
+router.post("/actualizarpass", cusuario.actualizarpass);
+
 router.post("/login", cusuario.verificar);
 
 //Rutas de publicacion

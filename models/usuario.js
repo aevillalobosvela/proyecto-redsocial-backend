@@ -54,6 +54,19 @@ module.exports = {
     );
   },
 
+  actualizarpass: (datos, callBack) => {
+    coneccion.query(
+      `update usuario set password=? where id=?`,
+      [datos.password, datos.id],
+      (error, results) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
   verificar: (datos, callBack) => {
     coneccion.query(
       `SELECT * FROM usuario WHERE username = ? AND password = ?`,
