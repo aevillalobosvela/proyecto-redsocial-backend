@@ -3,6 +3,7 @@ const router = express.Router();
 const cusuario = require("../controlers/usuario");
 const cpublicacion = require("../controlers/publicacion");
 const ccomentario = require("../controlers/comentario");
+const clike = require("../controlers/like");
 const auth = require("../auth");
 const multer = require("multer");
 
@@ -39,5 +40,13 @@ router.get("/clista", ccomentario.listado);
 router.get("/cpublista", ccomentario.listado_com);
 
 router.put("/cinsertar", ccomentario.insertar);
+
+//Rutas de interaccion
+
+router.get("/llista", clike.listado);
+
+router.get("/llistado_user", clike.listado_user);
+
+router.put("/linsertar", clike.insertar);
 
 module.exports = router;
