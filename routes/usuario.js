@@ -49,4 +49,8 @@ router.get("/llistado_user", clike.listado_user);
 
 router.put("/linsertar", clike.insertar);
 
+router.put("/lquitar", clike.quitar);
+
+router.get("/lmislikes", clike.mislikes);
+
 module.exports = router;
