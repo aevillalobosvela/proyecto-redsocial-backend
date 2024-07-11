@@ -28,7 +28,7 @@ router.post("/insertar", upload.single("imagenperfil"), cusuario.insertar);
 
 router.delete("/borrar", auth.verificatoken, cusuario.borrar);
 
-router.post("/actualizar", cusuario.actualizar);
+router.post("/actualizar", upload.single("imagenperfil"), cusuario.actualizar);
 
 router.post("/actualizarpass", cusuario.actualizarpass);
 

@@ -48,10 +48,17 @@ module.exports = {
     );
   },
 
-  actualizar: (datos, callBack) => {
+  actualizar: (url, datos, callBack) => {
     coneccion.query(
-      `update usuario set nombre=?,apellido=?,username=?,fecnac=? where id=?`,
-      [datos.nombre, datos.apellido, datos.username, datos.fecnac, datos.id],
+      `update usuario set nombre=?,apellido=?,username=?,fecnac=?,imagenurl=? where id=?`,
+      [
+        datos.nombre,
+        datos.apellido,
+        datos.username,
+        datos.fecnac,
+        url,
+        datos.id,
+      ],
       (error, results) => {
         if (error) {
           callBack(error);

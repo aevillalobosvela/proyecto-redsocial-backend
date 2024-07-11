@@ -21,7 +21,7 @@ module.exports = {
   insertar: (req, res) => {
     const { body, file } = req;
     body.password = sha256(body.password);
-    let url;
+    let url = null;
     if (file) {
       url = `http://localhost:5050/uploads/${file.filename}`;
     }
@@ -65,8 +65,12 @@ module.exports = {
   },
 
   actualizar: (req, res) => {
-    const body = req.body;
-    musuario.actualizar(body, (err, results) => {
+    const { body, file } = req;
+    let url = null;
+    if (file) {
+      url = `http://localhost:5050/uploads/${file.filename}`;
+    }
+    musuario.actualizar(url, body, (err, results) => {
       if (err) {
         if (!res.headersSent) {
           return res.json({
@@ -79,7 +83,6 @@ module.exports = {
         return res.json({
           success: 1,
           data: results,
-          nombre: body,
         });
       }
     });
