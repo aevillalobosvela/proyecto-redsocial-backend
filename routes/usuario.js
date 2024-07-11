@@ -5,13 +5,26 @@ const cpublicacion = require("../controlers/publicacion");
 const ccomentario = require("../controlers/comentario");
 const clike = require("../controlers/like");
 const auth = require("../auth");
+const path = require("path");
 const multer = require("multer");
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../uploads"));
+  },
+  filename: function (req, file, cb) {
+    const body = req.body;
+    cb(null, `imgperfil${Date.now()}.${file.mimetype.split("/")[1]}`);
+  },
+});
+
+const upload = multer({ storage });
 
 //Rutas de usuario
 
 router.get("/lista", cusuario.listado);
 
-router.put("/insertar", cusuario.insertar);
+router.post("/insertar", upload.single("imagenperfil"), cusuario.insertar);
 
 router.delete("/borrar", auth.verificatoken, cusuario.borrar);
 

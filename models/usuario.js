@@ -15,10 +15,17 @@ module.exports = {
     });
   },
 
-  insertar: (datos, callBack) => {
+  insertar: (url, datos, callBack) => {
     coneccion.query(
-      `insert into usuario (nombre,apellido,username,fecnac,password,imagen) values (?,?,?,?,?,?)`,
-      [datos.nombre, datos.apellido, datos.username, datos.fecnac, datos.password,datos.imagen],
+      `insert into usuario (nombre,apellido,username,fecnac,password,imagenurl) values (?,?,?,?,?,?)`,
+      [
+        datos.nombre,
+        datos.apellido,
+        datos.username,
+        datos.fecnac,
+        datos.password,
+        url,
+      ],
       (error, results, fields) => {
         if (error) {
           callBack(error);

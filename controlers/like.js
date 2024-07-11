@@ -37,7 +37,6 @@ module.exports = {
           });
         }
       }
-      console.log(results);
       if (!res.headersSent) {
         return res.json({
           success: 1,
@@ -69,13 +68,11 @@ module.exports = {
 
   mislikes: (req, res) => {
     const { id } = req.query;
-    console.log(req.query);
     mlike.mislikes({ id }, (err, results) => {
       if (err) {
         console.log(err);
         return;
       }
-      console.log(results);
       return res.json({
         datos: results,
       });

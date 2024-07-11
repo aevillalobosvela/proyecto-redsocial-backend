@@ -19,9 +19,13 @@ module.exports = {
   },
 
   insertar: (req, res) => {
-    const body = req.body;
+    const { body, file } = req;
     body.password = sha256(body.password);
-    musuario.insertar(body, (err, results) => {
+    let url;
+    if (file) {
+      url = `http://localhost:5050/uploads/${file.filename}`;
+    }
+    musuario.insertar(url, body, (err, results) => {
       if (err) {
         if (!res.headersSent) {
           return res.json({
@@ -62,7 +66,6 @@ module.exports = {
 
   actualizar: (req, res) => {
     const body = req.body;
-    console.log(body);
     musuario.actualizar(body, (err, results) => {
       if (err) {
         if (!res.headersSent) {
@@ -84,7 +87,6 @@ module.exports = {
 
   actualizarpass: (req, res) => {
     const body = req.body;
-    console.log(body);
     body.password = sha256(body.password);
     musuario.actualizarpass(body, (err, results) => {
       if (err) {
@@ -103,7 +105,6 @@ module.exports = {
       }
     });
   },
-
 
   verificar: (req, res) => {
     const body = req.body;

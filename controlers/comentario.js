@@ -7,7 +7,6 @@ module.exports = {
         console.log(err);
         return;
       }
-      console.log(results);
       return res.json({
         datos: results,
       });
@@ -38,7 +37,6 @@ module.exports = {
           });
         }
       }
-      console.log(results);
       if (!res.headersSent) {
         return res.json({
           success: 1,
