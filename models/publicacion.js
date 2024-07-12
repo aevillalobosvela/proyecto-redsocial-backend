@@ -40,10 +40,10 @@ module.exports = {
     );
   },
 
-  insertar: (datos, callBack) => {
+  insertar: (url, datos, callBack) => {
     coneccion.query(
-      `insert into publicacion (contenido,likes,fec_pub,id) values (?,?,?,?)`,
-      [datos.contenido, datos.likes, datos.fec_pub, datos.id],
+      `insert into publicacion (contenido,likes,fec_pub,imagenurlpub,id) values (?,?,?,?,?)`,
+      [datos.contenido, datos.likes, datos.fec_pub, url, datos.id],
       (error, results, fields) => {
         if (error) {
           callBack(error);

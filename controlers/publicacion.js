@@ -36,8 +36,15 @@ module.exports = {
   },
 
   insertar: (req, res) => {
-    const body = req.body;
-    mpublicacion.insertar(body, (err, results) => {
+    const { body, file } = req;
+    let url = null;
+    console.log(body);
+    if (file) {
+      url = `http://localhost:5050/uploads/${file.filename}`;
+      console.log(file);
+      console.log(url);
+    }
+    mpublicacion.insertar(url, body, (err, results) => {
       if (err) {
         if (!res.headersSent) {
           return res.json({
@@ -57,7 +64,7 @@ module.exports = {
 
   eliminar: (req, res) => {
     const { cod_pub } = req.query;
-    mpublicacion.eliminar({ cod_pub}, (err, results) => {
+    mpublicacion.eliminar({ cod_pub }, (err, results) => {
       if (err) {
         if (!res.headersSent) {
           return res.json({

@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const body = req.body;
-    cb(null, `imgperfil${Date.now()}.${file.mimetype.split("/")[1]}`);
+    cb(null, `img${Date.now()}.${file.mimetype.split("/")[1]}`);
   },
 });
 
@@ -38,7 +38,7 @@ router.post("/login", cusuario.verificar);
 
 router.get("/plista", cpublicacion.listado);
 
-router.put("/pinsertar", cpublicacion.insertar);
+router.post("/pinsertar", upload.single("imagenpubli"), cpublicacion.insertar);
 
 router.get("/precuperar_user", cpublicacion.user_pub);
 
