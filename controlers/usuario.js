@@ -44,8 +44,8 @@ module.exports = {
   },
 
   borrar: (req, res) => {
-    const body = req.body;
-    musuario.borrar(body, (err, results) => {
+    const { id } = req.query;
+    musuario.borrar({ id }, (err, results) => {
       if (err) {
         if (!res.headersSent) {
           return res.json({
@@ -58,7 +58,6 @@ module.exports = {
         return res.json({
           success: 1,
           data: results,
-          nombre: body,
         });
       }
     });

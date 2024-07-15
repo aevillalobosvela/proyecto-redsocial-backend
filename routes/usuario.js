@@ -26,7 +26,7 @@ router.get("/lista", cusuario.listado);
 
 router.post("/insertar", upload.single("imagenperfil"), cusuario.insertar);
 
-router.delete("/borrar", auth.verificatoken, cusuario.borrar);
+router.delete("/borrar", cusuario.borrar);
 
 router.post("/actualizar", upload.single("imagenperfil"), cusuario.actualizar);
 
