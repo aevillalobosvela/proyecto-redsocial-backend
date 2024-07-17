@@ -23,6 +23,17 @@ module.exports = {
     });
   },
 
+  topuser_pub: (req, res) => {
+    mpublicacion.topuser_pub((err, results) => {
+      if (err) {
+        return;
+      }
+      return res.json({
+        datos: results,
+      });
+    });
+  },
+
   mis_pub: (req, res) => {
     const { id } = req.query;
     mpublicacion.mis_pub({ id }, (err, results) => {

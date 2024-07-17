@@ -42,6 +42,8 @@ router.post("/pinsertar", upload.single("imagenpubli"), cpublicacion.insertar);
 
 router.get("/precuperar_user", cpublicacion.user_pub);
 
+router.get("/ptoprecuperar_user", cpublicacion.topuser_pub);
+
 router.get("/pmis_pub", cpublicacion.mis_pub);
 
 router.delete("/peliminar", cpublicacion.eliminar);

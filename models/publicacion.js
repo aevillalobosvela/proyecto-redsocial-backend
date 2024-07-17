@@ -26,6 +26,20 @@ module.exports = {
       }
     );
   },
+  
+  topuser_pub: (callBack) => {
+    coneccion.query(
+      `SELECT * FROM usuario u,publicacion p WHERE u.id = p.id ORDER BY likes DESC;`,
+      [],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+        return callBack(null, results);
+      }
+    );
+  },
+
 
   mis_pub: (datos, callBack) => {
     coneccion.query(
