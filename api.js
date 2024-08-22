@@ -1,8 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const cors = require("cors");
-const db = require("./database");
-const multer = require("multer");
 const path = require('path')
 
 const app = express();
@@ -20,6 +18,9 @@ app.use(require("./routes/usuario.js"));
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.listen(process.env.PORT, () => {
-  console.log("conectado en el puerto: ", process.env.PORT);
+const port = process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
+
+// Iniciar el servidor en el puerto definido
+app.listen(port, () => {
+  console.log("Conectado en el puerto: ", port);
 });
