@@ -8,8 +8,10 @@ function sha256(string) {
 
 module.exports = {
   listado: (req, res) => {
+    console.log("LISTAR");
     musuario.listado((err, results) => {
       if (err) {
+        console.log(err);
         return;
       }
       return res.json({
